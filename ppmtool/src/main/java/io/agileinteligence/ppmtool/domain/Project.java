@@ -27,6 +27,7 @@ public class Project {
     private Date end_date;
 
     @JsonFormat(pattern = "yyyy-mm-dd")
+    @Column(updatable = false)
     private Date created_At;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
@@ -103,9 +104,22 @@ public class Project {
         this.created_At = new Date();
     }
 
-    @PrePersist
-    protected void onUpdate() {
+    @PreUpdate
+    protected  void onUpdate() {
         this.updated_At = new Date();
     }
 
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", projectName='" + projectName + '\'' +
+                ", projectIdentifier='" + projectIdentifier + '\'' +
+                ", description='" + description + '\'' +
+                ", start_date=" + start_date +
+                ", end_date=" + end_date +
+                ", created_At=" + created_At +
+                ", updated_At=" + updated_At +
+                '}';
+    }
 }

@@ -13,20 +13,23 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/project")
+@CrossOrigin
 public class ProjectCotroller {
 
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private MapValidationErrorService mapValidationErrorService;
+    private MapValidationErrorService mapValidationErrorService = new MapValidationErrorService();
+
 
     @PostMapping("")
     public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult bindingResult) {
 
-        ResponseEntity<?> errMap = mapValidationErrorService.MapValidationService(bindingResult);
+        ResponseEntity<?> errMap = mapValidationErrorService.validate(bindingResult);
         if (errMap != null) {
             return errMap;
         }
+
 
         Project project1 = projectService.saveOrUpdateproject(project);
 
