@@ -1,7 +1,9 @@
 package io.agileinteligence.ppmtool.services;
 
+import io.agileinteligence.ppmtool.domain.Backlog;
 import io.agileinteligence.ppmtool.domain.Project;
 import io.agileinteligence.ppmtool.exceptions.ProjectIdException;
+import io.agileinteligence.ppmtool.repositories.BacklogRepository;
 import io.agileinteligence.ppmtool.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,13 +13,24 @@ public class ProjectService {
 
     @Autowired
     private ProjectRepository projectRepository;
+    @Autowired
+    private BacklogRepository backlogRepository;
 
     public Project saveOrUpdateproject(Project project) {
 
         try {
             // make projectIdentifier upper case
-            project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+            String projectIdentifier = project.getProjectIdentifier().toUpperCase();
+            project.setProjectIdentifier(projectIdentifier);
 
+            if (project.getId() == null) {
+                Backlog backlog = new Backlog();
+                project.setBacklog(backlog);
+                backlog.setProject(project);
+                backlog.setProjectIdentifier(projectIdentifier);
+            } else {
+                project.setBacklog(backlogRepository.findByProjectIdentifier(projectIdentifier));
+            }
             return projectRepository.save(project);
         } catch (Exception e) {
             throw new ProjectIdException("Project ID " + project.getProjectIdentifier().toUpperCase() + " 'already exists'");
@@ -51,7 +64,5 @@ public class ProjectService {
         }
 
         projectRepository.delete(project);
-
     }
-
 }

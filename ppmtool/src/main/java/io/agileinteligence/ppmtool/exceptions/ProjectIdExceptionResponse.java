@@ -15,4 +15,5 @@ public class ProjectIdExceptionResponse {
     public void setProjectIdentifier(String projectIdentifier) {
         this.projectIdentifier = projectIdentifier;
     }
+
 }

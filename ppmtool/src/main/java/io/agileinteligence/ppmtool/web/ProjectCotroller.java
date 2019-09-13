@@ -19,7 +19,7 @@ public class ProjectCotroller {
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private MapValidationErrorService mapValidationErrorService = new MapValidationErrorService();
+    private MapValidationErrorService mapValidationErrorService;
 
 
     @PostMapping("")
