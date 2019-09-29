@@ -163,7 +163,7 @@ class AddProject extends Component {
 }
 
 AddProject.propTypes = {
-  // this tells react that createProject is require
+  // this tells react that createProject is required
   // for this component to work properly
   createProject: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
