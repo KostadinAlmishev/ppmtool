@@ -18,6 +18,8 @@ public class ProjectTaskService {
     private BacklogRepository backlogRepository;
     @Autowired
     private ProjectTaskRepository projectTaskRepository;
+    @Autowired
+    private ProjectService projectService;
 
     public ProjectTask addProjectTask(String projectIdentifier, ProjectTask projectTask) {
 
@@ -53,8 +55,11 @@ public class ProjectTaskService {
         return projectTaskRepository.save(projectTask);
     }
 
-    public Iterable<ProjectTask> findBacklogById(String backlog_id) {
-        return projectTaskRepository.findByProjectIdentifierOrderByPriority(backlog_id);
+    public Iterable<ProjectTask> findBacklogById(String id) {
+
+        projectService.findByIdentifier(id);
+
+        return projectTaskRepository.findByProjectIdentifierOrderByPriority(id);
     }
 
     public ProjectTask findPTByProjectSequence(String backlog_id, String pt_id) {
