@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static io.agileinteligence.ppmtool.security.SecurityConstants.SIGN_UP_URL;
 
@@ -20,7 +21,7 @@ import static io.agileinteligence.ppmtool.security.SecurityConstants.SIGN_UP_URL
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
         securedEnabled = true,
-        jsr250Enabled = true,
+        jsr250Enabled = true,       // Enables to use @RoleAllowed
         prePostEnabled = true
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -33,6 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter() {
+        return new JwtAuthenticationFilter();
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -49,9 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unathorizedHandler).and() // It handles what exceptions need to be thrown
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .headers().frameOptions().sameOrigin()  // To enable H2 Database
                 .and()
                 .authorizeRequests()
@@ -68,6 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 ).permitAll()
                 .antMatchers(SIGN_UP_URL).permitAll()
                 .anyRequest().authenticated();
+
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
 }

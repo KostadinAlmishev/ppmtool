@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "BACKLOG", schema = "KOSTADIN")
 public class Backlog {
 
     @Id

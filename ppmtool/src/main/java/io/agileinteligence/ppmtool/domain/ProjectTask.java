@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
+@Table(name = "PROJECTTASK", schema = "KOSTADIN")
 public class ProjectTask {
 
     @Id

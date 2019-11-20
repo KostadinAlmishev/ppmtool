@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
+@Table(name = "PROJECT", schema = "KOSTADIN")
 public class Project {
 
     @Id
@@ -39,6 +40,12 @@ public class Project {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
     @JsonIgnore
     private Backlog backlog;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private User user;
+
+    private String projectLeader;
 
     public Project() {
     }
@@ -115,6 +122,21 @@ public class Project {
         this.backlog = backlog;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getProjectLeader() {
+        return projectLeader;
+    }
+
+    public void setProjectLeader(String projectLeader) {
+        this.projectLeader = projectLeader;
+    }
 
     @PrePersist
     protected void onCreate() {
@@ -137,6 +159,9 @@ public class Project {
                 ", end_date=" + end_date +
                 ", created_At=" + created_At +
                 ", updated_At=" + updated_At +
+                ", backlog=" + backlog +
+                ", user=" + user +
+                ", projectLeader='" + projectLeader + '\'' +
                 '}';
     }
 }
