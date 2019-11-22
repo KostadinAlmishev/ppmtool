@@ -4,7 +4,6 @@ import Backlog from './Backlog';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getBacklog } from "../../redux/actions/backlogActions";
-import ProjectTask from './projectTasks/ProjectTask';
 
 class ProjectBoard extends Component {
 

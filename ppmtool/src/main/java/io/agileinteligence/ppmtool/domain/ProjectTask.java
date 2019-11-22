@@ -1,5 +1,6 @@
 package io.agileinteligence.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -29,8 +30,11 @@ public class ProjectTask {
     @JsonIgnore
     Backlog backlog;
 
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date dueDate;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date create_At;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_At;
 
     @PrePersist

@@ -47,6 +47,7 @@ export const getProjectTask = (backlog_id, pt_id, history) => async dispatch => 
 }
 
 export const updateProjectTask = (backlog_id, pt_id, project_task, history) => async dispatch => {
+    console.log(project_task);
     axios.patch(`/api/backlog/${backlog_id}/${pt_id}`, project_task)
         .then(() => {
             dispatch({

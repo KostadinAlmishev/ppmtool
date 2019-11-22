@@ -17,7 +17,7 @@ class UpdateProjectTask extends Component {
             acceptanceCriteria: "",
             status: "",
             priority: "",
-            dueData: "",
+            dueDate: "",
             projectIdentifier: "",
             create_At: "",
             update_At: "",
@@ -45,7 +45,7 @@ class UpdateProjectTask extends Component {
             acceptanceCriteria,
             status,
             priority,
-            dueData,
+            dueDate,
             projectIdentifier,
             create_At,
             update_At,
@@ -58,7 +58,7 @@ class UpdateProjectTask extends Component {
             acceptanceCriteria,
             status,
             priority,
-            dueData,
+            dueDate,
             projectIdentifier,
             create_At,
             update_At,
@@ -80,7 +80,7 @@ class UpdateProjectTask extends Component {
             acceptanceCriteria: this.state.acceptanceCriteria,
             status: this.state.status,
             priority: this.state.priority,
-            dueData: this.state.dueData,
+            dueDate: this.state.dueDate,
             projectIdentifier: this.state.projectIdentifier,
             create_At: this.state.create_At,
             update_At: this.state.update_At,
@@ -141,7 +141,7 @@ class UpdateProjectTask extends Component {
                                     <input type="date"
                                         className="form-control form-control-lg"
                                         name="dueDate"
-                                        value={ this.state.dueData }
+                                        value={ this.state.dueDate }
                                         onChange={ this.onChange }
                                         />
                                 </div>

@@ -34,6 +34,7 @@ class UpdateProject extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
     }
+    
     const {
       id,
       projectName,
@@ -42,6 +43,7 @@ class UpdateProject extends Component {
       start_date,
       end_date
     } = nextProps.project;
+
     this.setState({
       id,
       projectName,
@@ -49,7 +51,7 @@ class UpdateProject extends Component {
       description,
       start_date,
       end_date
-    })
+    });
   }
 
   onChange(e) {
