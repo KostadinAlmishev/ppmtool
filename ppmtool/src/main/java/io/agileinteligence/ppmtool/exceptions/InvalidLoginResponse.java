@@ -1,6 +1,7 @@
 package io.agileinteligence.ppmtool.exceptions;
 
 public class InvalidLoginResponse {
+
     private String username;
     private String password;
 

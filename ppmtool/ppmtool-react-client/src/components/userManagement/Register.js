@@ -120,7 +120,7 @@ class Register extends Component {
                                     <input
                                         type="password"
                                         className={classnames("form-control form-control-lg", {
-                                            "is-invalid": errors.password
+                                            "is-invalid": errors.confirmPassword
                                         })}
                                         placeholder="Confirm Password"
                                         name="confirmPassword"

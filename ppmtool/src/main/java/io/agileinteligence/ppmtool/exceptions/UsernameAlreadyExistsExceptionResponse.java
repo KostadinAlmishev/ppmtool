@@ -1,10 +1,10 @@
 package io.agileinteligence.ppmtool.exceptions;
 
-public class UsernameAlreadyExistsExcepionResponse {
+public class UsernameAlreadyExistsExceptionResponse {
 
     private String username;
 
-    public UsernameAlreadyExistsExcepionResponse(String username) {
+    public UsernameAlreadyExistsExceptionResponse(String username) {
         this.username = username;
     }
 
