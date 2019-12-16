@@ -49,7 +49,7 @@ function App() {
           }
 
           <Route exact path="/" component={Landing} />
-          <Route exact path="/register" component={Register} />
+          <Route exact patah="/register" component={Register} />
           <Route exact path="/login" component={Login} />
 
           {
